@@ -52,8 +52,8 @@ export const updatedProduct = async (req, res) => {
 export const deleteProduct = async (req, res) => {
     const { id } = req.params;
 
-    if (!id) {
-        return res.status(400).send({ success: false, message: "Please enter all fields" });
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).send({ success: false, message: "Product not found" });
     }
 
     try {
